@@ -46,7 +46,7 @@
 
 1️⃣ Create Conda Environment and Install Package
 ```bash
-git clone shallowdream204/BitDance.git
+git clone https://github.com/shallowdream204/BitDance.git
 cd BitDance
 conda create -n bitdance python=3.11 -y
 conda activate bitdance
