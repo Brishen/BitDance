@@ -92,7 +92,7 @@ snapshot_download(cache_dir=cache_dir,
 
 ```
 
-3️⃣ T2I Inference (check [here](modeling/t2i_pipeline.py#L22) for the supported image resolution)
+3️⃣ T2I Inference (check [here](modeling/t2i_pipeline.py#L21) for the supported image resolution)
 ```python
 # example_t2i.py
 from modeling.t2i_pipeline import BitDanceT2IPipeline
@@ -144,6 +144,163 @@ Note you still need to follow the instructions in [DPG Bench](https://github.com
 
 ## 🎰 Train
 We are organizing the code related to data loading. The training instruction of BitDance is coming soon.
+
+## 📊 Model Performance
+<div style="overflow-x: auto; margin-bottom: 16px;">
+  <table style="border-collapse: collapse; width: 100%;">
+    <thead>
+      <tr>
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">Model</th>
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">Open Source</th>
+        <!-- DPG-Bench 移动到这里 -->
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">DPG-Bench</th>
+        <!-- 新增 GenEval 列 -->
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">GenEval</th>
+        <th style="padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;" colspan="2">OneIG-Bench</th>
+        <th style="padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;" colspan="2">TIIF-Bench</th>
+      </tr>
+      <tr>
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;">EN</th>
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;">ZH</th>
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;">short</th>
+        <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;">long</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">GPT Image 1</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✗</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">85.15</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.84</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.533</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.474</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">89.15</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">88.29</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">Seedream 3.0</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✗</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">88.27</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.84</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.530</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.528</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">86.02</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">84.31</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">Qwen-Image</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">88.32</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.87</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.539</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.548</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">86.14</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">86.83</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">Z-Image</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">88.14</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.84</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.546</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.535</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">80.20</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">83.01</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">Z-Image-Turbo</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">84.86</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.82</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.528</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.507</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">77.73</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">80.05</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">FLUX.1 [Dev]</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">83.84</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.66</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.434</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">71.09</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">71.78</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">BAGEL</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">85.07</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.88</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.361</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.370</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">71.50</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">71.70</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">Infinity</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">83.46</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.73</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">62.07</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">62.32</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">Janus-Pro</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">84.19</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.80</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.267</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.240</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">66.50</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">65.01</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">Show-o2</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">86.14</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.76</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.308</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">59.72</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">58.86</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">NextStep-1</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">85.28</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.73</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.418</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;">GLM-Image</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">84.78</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">-</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.528</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.511</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">81.01</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">81.02</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;font-weight:bold;">BitDance</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">88.28</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.86</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.532</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.512</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">79.64</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">78.12</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
 ## 🪪 License
 
