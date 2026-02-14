@@ -19,10 +19,10 @@
         alt="BitDance Model"
     />
   </a>
-  <a href="TBD">
+  <a href="https://huggingface.co/spaces/shallowdream204/BitDance-14B-64x">
     <img 
-        src="https://img.shields.io/badge/HF-Space-orange?logo=huggingface&logoColor=yellow" 
-        alt="BitDance Space"
+        src="https://img.shields.io/badge/HF Space-Demo-orange?logo=huggingface&logoColor=yellow" 
+        alt="BitDance Demo"
     />
   </a>
 </p>
@@ -39,7 +39,8 @@
 <p align="center"><img src="assets/teaser.webp" width="90%"></p>
 
 ## 🔥 News
-TBD
+- **2026.2.14**: T2I inference code and models are released.
+
 
 ## ⚡ Quick Start
 
@@ -56,7 +57,7 @@ pip install flash_attn==2.8.2 --no-build-isolation
 2️⃣ Download Model Weights
 
 We offer two models, BitDance-14B-64x and BitDance-14B-16x, which can predict 64 and 16 tokens in parallel at each step, respectively.
-|  Model  | #Token per Step | Step (1024px) | Supported Size | HF Link |
+|  Model  | #Token per Step | Step (1024px) | Supported Size | Huggingface |
 |:-------:|:----:|:----:|:-----------:|:----:|
 | BitDance-14B-64x| 64 | 64 |1024px       | [BitDance-14B-64x](https://huggingface.co/shallowdream204/BitDance-14B-64x) |
 | BitDance-14B-16x| 16 | 256 |512&1024px       | [BitDance-14B-16x](https://huggingface.co/shallowdream204/BitDance-14B-16x) |
@@ -91,7 +92,7 @@ snapshot_download(cache_dir=cache_dir,
 
 ```
 
-3️⃣ T2I Inference
+3️⃣ T2I Inference (check [here](modeling/t2i_pipeline.py#L22) for the supported image resolution)
 ```python
 # example_t2i.py
 from modeling.t2i_pipeline import BitDanceT2IPipeline
@@ -102,19 +103,28 @@ device = 'cuda'
 
 pipe = BitDanceT2IPipeline(model_path=model_path, device=device)
 
-prompt = "A gritty, noir-style comic book panel. A detective in a trench coat stands in a dark alleyway, lighting a cigarette. The only light source is the flame of the lighter, illuminating his rugged face and the rain falling around him. The shadows are deep blacks (ink style). Speech bubble in the corner says 'It was a long night.' The lines are bold and expressive, cross-hatching shading, monochromatic with a splash of red for the lighter flame."
+prompt = "A close-up portrait in a cinematic photography style, capturing a girl-next-door look on a sunny daytime urban street. She wears a khaki sweater, with long, flowing hair gently draped over her shoulders. Her head is turned slightly, revealing soft facial features illuminated by realistic, delicate sunlight coming from the left. The sunlight subtly highlights individual strands of her hair. The image has a Canon film-like color tone, evoking a warm nostalgic atmosphere."
 
 image = pipe.generate(
     prompt=prompt,
     height=1024,
     width=1024,
-    num_sampling_steps=50, # adjust to 25 steps for faster inference
+    num_sampling_steps=50, # may adjust to 25 steps for faster inference, but may slightly reduce quality
     guidance_scale=7.5,
     num_images=1,
     seed=42
 )[0]
 
 image.save("example.png")
+```
+
+## 🤗 Demo
+
+🔥 Try the Huggingface Space demo to start playing with BitDance: [BitDance-Demo](https://huggingface.co/spaces/shallowdream204/BitDance-14B-64x)
+
+You can also run the demo locally:
+```bash
+python app.py
 ```
 
 ## 📸 Evaluation

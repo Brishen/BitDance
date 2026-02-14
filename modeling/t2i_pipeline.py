@@ -3,7 +3,6 @@ from torch import nn
 from einops import rearrange
 
 from transformers import set_seed
-from omegaconf import OmegaConf
 from PIL import Image
 
 import numpy as np

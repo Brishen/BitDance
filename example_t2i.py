@@ -6,13 +6,13 @@ device = 'cuda'
 
 pipe = BitDanceT2IPipeline(model_path=model_path, device=device)
 
-prompt = "A gritty, noir-style comic book panel. A detective in a trench coat stands in a dark alleyway, lighting a cigarette. The only light source is the flame of the lighter, illuminating his rugged face and the rain falling around him. The shadows are deep blacks (ink style). Speech bubble in the corner says 'It was a long night.' The lines are bold and expressive, cross-hatching shading, monochromatic with a splash of red for the lighter flame."
+prompt = "A close-up portrait in a cinematic photography style, capturing a girl-next-door look on a sunny daytime urban street. She wears a khaki sweater, with long, flowing hair gently draped over her shoulders. Her head is turned slightly, revealing soft facial features illuminated by realistic, delicate sunlight coming from the left. The sunlight subtly highlights individual strands of her hair. The image has a Canon film-like color tone, evoking a warm nostalgic atmosphere."
 
 image = pipe.generate(
     prompt=prompt,
     height=1024,
     width=1024,
-    num_sampling_steps=50, # adjust to 25 steps for faster inference
+    num_sampling_steps=50, # may adjust to 25 steps for faster inference, but may slightly reduce quality
     guidance_scale=7.5,
     num_images=1,
     seed=42

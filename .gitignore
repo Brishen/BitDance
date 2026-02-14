@@ -1,0 +1,17 @@
+wandb
+__pycache__
+.vscode
+notebooks
+results
+*.ipynb 
+*.ipynb_checkpoints
+eval_results
+tests
+downloads
+ckpts
+demo_images
+eval/OneIG-Benchmark/models
+eval/OneIG-Benchmark/scripts/style/models
+eval/OneIG-Benchmark/results*
+models/
+.DS_Store

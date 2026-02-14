@@ -4,3 +4,8 @@ liger-kernel
 accelerate>=0.34.0
 numpy==1.26.4
 huggingface_hub==0.34.4
+einops==0.6.1
+torch==2.7.1
+torchvision==0.22.1
+safetensors==0.6.2
+gradio
