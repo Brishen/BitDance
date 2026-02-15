@@ -1,5 +1,5 @@
-# BitDance: Scaling Autoregressive Generative Models with Binary Tokens
-
+# BitDance: Scaling Autoregressive Generative Models with Binary Tokens 
+ 
 <p align="center">
   <a href="https://bitdance.csuhan.com/">
     <img
