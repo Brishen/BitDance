@@ -53,12 +53,12 @@ We scaled BitDance's capacity through Pre-training, Continued Training, and Supe
 
 <p align="center"><img src="assets/arch.webp" width="95%"></p>
 
-## 🗂️ BitDance Model Zoo
+## 📚 BitDance Model Zoo
 1️⃣ Binary Visual Tokenizers
 
 We release three binary tokenizers with different downsampling ratios and vocabulary sizes. All model weights and configs can be found at [BitDance-Tokenizer](https://huggingface.co/shallowdream204/BitDance-Tokenizer).
 
-Vocabulary Size | Down Ratio | IN-256 PSNR | IN-256 SSIM  | Weights | Config | 
+Vocabulary Size | Down Ratio | IN-256 PSNR | IN-256 SSIM  | Weight | Config | 
 |:---: |:---:|:---:|:---:|:---:|:---:|
 $2^{32}$ | 16 | 24.90 | 0.72 |[ae_d16c32](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d16c32.safetensors) | [ae_d16c32](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d16c32_config.json)
 $2^{128}$ | 32 | 23.26 | 0.67 |[ae_d32c128](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d32c128.safetensors) | [ae_d32c128](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d32c128_config.json)
