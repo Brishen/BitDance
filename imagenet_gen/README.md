@@ -14,7 +14,7 @@ BitDance-B-16X   | 260M |  16 |1.91 | [BitDance_B_16X.pt](https://huggingface.co
 BitDance-L-1X  | 527M |  256 |1.31 | [BitDance_L_1X.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_L_1X.pt)
 BitDance-H-1X   | 1.0B |  256 |1.24 | [BitDance_H_1X.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_H_1X.pt)
 
-Run the following code to download all model checkpoints.
+Run the following script to download all model checkpoints.
 
 ```bash
 hf download shallowdream204/BitDance-ImageNet --local-dir models/BitDance-ImageNet --max-workers=16
