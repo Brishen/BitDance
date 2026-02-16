@@ -21,7 +21,7 @@
   </a>
   <a href="https://huggingface.co/spaces/shallowdream204/BitDance-14B-64x">
     <img 
-        src="https://img.shields.io/badge/HF Space-Demo-orange?logo=huggingface&logoColor=yellow" 
+        src="https://img.shields.io/badge/Play with BitDance!-Demo-orange?logo=huggingface&logoColor=yellow" 
         alt="BitDance Demo"
     />
   </a>
@@ -38,6 +38,13 @@
 
 <p align="center"><img src="assets/teaser.webp" width="90%"></p>
 
+## 🔥 News
+- **2026.2.15**: We release **UniWeTok**, An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model. Checkout the **[UniWeTok README](README_UniWeTok.md)** for more details!
+- **2026.2.15**: Code and models for class conditional generation on ImageNet are released! Check [here](imagenet_gen/README.md) for details.
+- **2026.2.14**: Text-to-image inference code and models are released!
+
+
+
 ## 🧠 Method
 BitDance is a multimodal generative model featuring a purely autoregressive architecture. It adopts a simple decoder-only architecture, built upon three key components: **(i)** a large-vocabulary binary tokenizer, **(ii)** a binary diffusion head for sampling in extremely large discrete spaces, and **(iii)** a next-patch diffusion paradigm that enables efficient multi-token prediction.
 BitDance is capable of predicting up to 64 visual tokens in parallel, offering a significant speed improvement over standard next-token prediction while maintaining excellent generation quality.
@@ -45,11 +52,6 @@ BitDance is capable of predicting up to 64 visual tokens in parallel, offering a
 We scaled BitDance's capacity through Pre-training, Continued Training, and Supervised Finetuning on large-scale multimodal tokens. It surpasses open-source autoregressive models on multiple text-to-image generation benchmarks and achieves comparable performance to proprietary models and state-of-the-art diffusion models. Notably, BitDance achieves a speedup of over 30× compared to standard next-token prediction AR models.
 
 <p align="center"><img src="assets/arch.webp" width="95%"></p>
-
-## 🔥 News
-- **2026.2.15**: We release **UniWeTok**, An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model. Checkout the **[UniWeTok README](README_UniWeTok.md)** for more details!
-- **2026.2.15**: Code and models for class conditional generation on ImageNet are released! Check [here](imagenet_gen/README.md) for details.
-- **2026.2.14**: Text-to-image inference code and models are released!
 
 
 ## ⚡ Quick Start
