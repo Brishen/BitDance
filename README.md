@@ -96,7 +96,7 @@ image = pipe.generate(
     prompt=prompt,
     height=1024,
     width=1024,
-    num_sampling_steps=50, # may adjust to 25 steps for faster inference, but may slightly reduce quality
+    num_sampling_steps=50, # adjust to 25 steps for faster inference, but may slightly reduce quality
     guidance_scale=7.5,
     num_images=1,
     seed=42
@@ -115,19 +115,21 @@ python app.py
 ```
 
 ## 📸 Evaluation
-We provide the scripts for evaluation on DPG Bench and GenEval. More benchmark evaluation scripts are coming soon.
+1️⃣ We provide the scripts for evaluation on DPG Bench and GenEval. More benchmark evaluation scripts are coming soon.
 
-1️⃣ Evaluation of BitDance-14B-64x Model
+Evaluation of BitDance-14B-64x Model
 ```bash
 bash scripts/eval/eval_bitdance_14b_64x.sh
 ```
-2️⃣ Evaluation of BitDance-14B-16x Model
+Evaluation of BitDance-14B-16x Model
 
 ```bash
 bash scripts/eval/eval_bitdance_14b_16x.sh
 ```
 
 Note you still need to follow the instructions in [DPG Bench](https://github.com/TencentQQGYLab/ELLA#-dpg-bench) and [GenEval](https://github.com/djghosh13/geneval) to evaluate the results.
+
+2️⃣ To reproduce the experiments on ImageNet, check [here](imagenet_gen/README.md) for details.
 
 ## 🎰 Train
 We are organizing the code related to data loading. The training instruction of BitDance is coming soon.
