@@ -1,9 +1,9 @@
 # UniWeTok: An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model
 
 <p align="center">
-  <a href="https://arxiv.org/abs/submit/7270557">
+  <a href="https://arxiv.org/abs/2602.14178">
     <img
-      src="https://img.shields.io/badge/arXiv paper-2602.xxxxx-red?logo=arxiv&logoColor=red"
+      src="https://img.shields.io/badge/arXiv paper-2602.14178-red?logo=arxiv&logoColor=red"
       alt="UniWeTok Paper on arXiv"
     />
   </a>
@@ -57,7 +57,7 @@ If you find our work useful for your research, please consider citing our paper:
 @article{zhuang2026uniwetok,
   title   = {UniWeTok: An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model},
   author  = {Zhuang, Shaobin and Ai, Yuang and Han, Jiaming and Mao, Weijia and Li, Xiaohui and Wang, Fangyikang and Wang, Xiao and Li, Yan and Lin, Shanchuan and Xu, Kun and Yang, Zhenheng and Huang, Huaibo and Yue, Xiangyu and Chen, Hao and Wang, Yali},
-  journal = {TBD},
+  journal = {arXiv preprint arXiv:2602.14178},
   year    = {2026}
 }
 ```
