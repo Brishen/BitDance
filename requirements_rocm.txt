@@ -1,0 +1,12 @@
+--index-url https://rocm.nightlies.amd.com/v2/gfx1151/
+--extra-index-url https://pypi.org/simple
+transformers==4.57.0
+omegaconf
+accelerate>=0.34.0
+numpy==1.26.4
+huggingface_hub==0.34.4
+einops==0.6.1
+torch==2.7.1
+torchvision==0.22.1
+safetensors==0.6.2
+gradio

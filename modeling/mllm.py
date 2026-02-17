@@ -69,9 +69,12 @@ class MLLModel(PreTrainedModel):
         llm_config = config.llm
         llm_checkpoint = download(llm_config.checkpoint)
         if llm_config.type == "qwen3":
-            from liger_kernel.transformers import apply_liger_kernel_to_qwen3
-            print("apply liger kernel to qwen3")
-            apply_liger_kernel_to_qwen3(rope=False)
+            try:
+                from liger_kernel.transformers import apply_liger_kernel_to_qwen3
+                print("apply liger kernel to qwen3")
+                apply_liger_kernel_to_qwen3(rope=False)
+            except ImportError:
+                print("liger_kernel not found, skipping optimization")
             parallel_num = config.head.vision_pred.get("parallel_num", 1)
             from transformers import Qwen3Config
             tokenizer = AutoTokenizer.from_pretrained(llm_checkpoint)

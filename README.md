@@ -95,6 +95,22 @@ pip install -r requirements.txt
 pip install flash_attn==2.8.2 --no-build-isolation
 ```
 
+### Installation for AMD Strix Halo (gfx1151) with ROCm 7.1
+
+For AMD Strix Halo (gfx1151), we recommend using `pip` directly with the ROCm nightly index, as Conda packages might not be available or up-to-date.
+
+```bash
+# Create a virtual environment (recommended)
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install dependencies using the provided script
+chmod +x install_rocm_strix.sh
+./install_rocm_strix.sh
+```
+
+**Note:** `liger-kernel` and `flash-attn` are skipped for this platform to ensure compatibility. The model will use PyTorch's built-in SDPA which provides good performance.
+
 2️⃣ Download Model Weights
 
 Run the following scripts to download all T2I models.
