@@ -7,9 +7,9 @@
       alt="Project Page"
     />
   </a>
-  <a href="TBD">
+  <a href="https://arxiv.org/abs/2602.14041">
     <img
-      src="https://img.shields.io/badge/arXiv paper-TBD-red?logo=arxiv&logoColor=red"
+      src="https://img.shields.io/badge/arXiv paper-2602.14041-red?logo=arxiv&logoColor=red"
       alt="BitDance Paper on arXiv"
     />
   </a>
@@ -334,7 +334,7 @@ If you find our work useful for your research, please consider citing our paper:
 @article{ai2026bitdance,
   title   = {BitDance: Scaling Autoregressive Generative Models with Binary Tokens},
   author  = {Ai, Yuang and Han, Jiaming and Zhuang, Shaobin and Hu, Xuefeng and Yang, Ziyan and Yang, Zhenheng and Huang, Huaibo and Yue, Xiangyu and Chen, Hao},
-  journal = {TBD},
+  journal = {arXiv preprint arXiv:2602.14041},
   year    = {2026}
 }
 ```
