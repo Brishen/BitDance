@@ -100,6 +100,9 @@ def set_special_token_aliases(
     vision_end_str="<|vision_end|>",
     image_pad="<|image_pad|>",
 ):
+    special_tokens = [im_start_str, im_end_str, vision_start_str, vision_end_str, image_pad]
+    tokenizer.add_special_tokens({"additional_special_tokens": special_tokens})
+
     alias_special_token(tokenizer, "im_start", im_start_str)
     alias_special_token(tokenizer, "im_end", im_end_str)
     alias_special_token(tokenizer, "start_of_image", vision_start_str)

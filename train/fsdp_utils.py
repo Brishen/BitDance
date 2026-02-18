@@ -19,6 +19,7 @@ from torch.distributed.fsdp.wrap import transformer_auto_wrap_policy
 from safetensors.torch import load_file, save_file
 
 from transformers.models.qwen3.modeling_qwen3 import Qwen3DecoderLayer  # NEW
+from transformers.models.qwen2.modeling_qwen2 import Qwen2DecoderLayer
 from modeling.vision_head.flow_head_parallel_x import TransEncoder
 from modeling.utils import MLPconnector
 
@@ -88,7 +89,7 @@ def fsdp_wrapper(original_model, fsdp_config, ignored_modules=None):
         original_model,
         auto_wrap_policy=functools.partial(
             transformer_auto_wrap_policy,
-            transformer_layer_cls={Qwen3DecoderLayer, TransEncoder, MLPconnector},
+            transformer_layer_cls={Qwen3DecoderLayer, Qwen2DecoderLayer, TransEncoder, MLPconnector},
         ),
         ignored_modules=ignored_modules,
         mixed_precision=MixedPrecision(
@@ -96,7 +97,7 @@ def fsdp_wrapper(original_model, fsdp_config, ignored_modules=None):
             reduce_dtype=torch.bfloat16,
             buffer_dtype=torch.bfloat16,
         ),
-        device_id=dist.get_rank() % torch.cuda.device_count(),
+        device_id=dist.get_rank() % torch.cuda.device_count() if torch.cuda.is_available() else None,
         sharding_strategy=ShardingStrategy[fsdp_config.sharding_strategy],
         backward_prefetch=BackwardPrefetch[fsdp_config.backward_prefetch],
         cpu_offload=CPUOffload(offload_params=fsdp_config.cpu_offload),
@@ -396,6 +397,7 @@ class FSDPCheckpoint:
 def grad_checkpoint_check_fn(module):
     module_options = (
         Qwen3DecoderLayer,
+        Qwen2DecoderLayer,
         MLPconnector,
         TransEncoder
     )

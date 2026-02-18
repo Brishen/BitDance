@@ -11,6 +11,7 @@ from utils.fs import download
 from transformers import (
     PreTrainedModel,  
     AutoTokenizer,
+    AutoConfig,
 )
 from .utils import sample_codebook, flip_tensor_elements_uniform_prob, gaussian_sample, remove_first_user_block, create_sparse_mask, MLPconnector
 
@@ -68,7 +69,7 @@ class MLLModel(PreTrainedModel):
     def build_llm_model(self, config):
         llm_config = config.llm
         llm_checkpoint = download(llm_config.checkpoint)
-        if llm_config.type == "qwen3":
+        if llm_config.type == "qwen3" or llm_config.type == "qwen2":
             try:
                 from liger_kernel.transformers import apply_liger_kernel_to_qwen3
                 print("apply liger kernel to qwen3")
@@ -76,23 +77,38 @@ class MLLModel(PreTrainedModel):
             except ImportError:
                 print("liger_kernel not found, skipping optimization")
             parallel_num = config.head.vision_pred.get("parallel_num", 1)
-            from transformers import Qwen3Config
+            # from transformers import Qwen3Config
             tokenizer = AutoTokenizer.from_pretrained(llm_checkpoint)
-            self.llm_config = Qwen3Config.from_pretrained(llm_checkpoint)
+            # self.llm_config = Qwen3Config.from_pretrained(llm_checkpoint)
+            self.llm_config = AutoConfig.from_pretrained(llm_checkpoint)
             if parallel_num > 1:
                 print('parallel_num > 1, use Qwen3FlexWrapper')
-                from modeling.llm.qwen3_navit import Qwen3FlexWrapper
-                self.llm_model = Qwen3FlexWrapper.from_pretrained(
-                llm_checkpoint,
-                config=self.llm_config,
-                use_packed_attn=True)
+                if llm_config.type == "qwen2":
+                    from modeling.llm.qwen2_navit import Qwen2FlexWrapper
+                    self.llm_model = Qwen2FlexWrapper.from_pretrained(
+                    llm_checkpoint,
+                    config=self.llm_config,
+                    use_packed_attn=True)
+                else:
+                    from modeling.llm.qwen3_navit import Qwen3FlexWrapper
+                    self.llm_model = Qwen3FlexWrapper.from_pretrained(
+                    llm_checkpoint,
+                    config=self.llm_config,
+                    use_packed_attn=True)
             else:
                 print('parallel_num <= 1, use Qwen3ForCausalLMWrapper')
-                from modeling.llm.qwen3_packed_wrapper import Qwen3ForCausalLMWrapper
-                self.llm_model = Qwen3ForCausalLMWrapper.from_pretrained(
-                llm_checkpoint,
-                config=self.llm_config,
-                use_packed_attn=True)
+                if llm_config.type == "qwen2":
+                    from modeling.llm.qwen2_packed_wrapper import Qwen2ForCausalLMWrapper
+                    self.llm_model = Qwen2ForCausalLMWrapper.from_pretrained(
+                    llm_checkpoint,
+                    config=self.llm_config,
+                    use_packed_attn=True)
+                else:
+                    from modeling.llm.qwen3_packed_wrapper import Qwen3ForCausalLMWrapper
+                    self.llm_model = Qwen3ForCausalLMWrapper.from_pretrained(
+                    llm_checkpoint,
+                    config=self.llm_config,
+                    use_packed_attn=True)
         else:
             raise ValueError(f"LLM type {llm_config.type} is not supported.")
 
