@@ -6,8 +6,6 @@ import torch.nn.functional as F
 
 from .sampling_x import euler_maruyama
 
-from flash_attn import flash_attn_func
-
 
 def timestep_embedding(t, dim, max_period=10000, time_factor: float = 1000.0):
     half = dim // 2
@@ -207,12 +205,13 @@ class Attention(nn.Module):
             attn = F.softmax(attn, dim=-1)
             output = (attn @ xv).transpose(1, 2).contiguous()
         else:
-            output = flash_attn_func(
-                    xq,
-                    xk,
-                    xv,
-                    causal=False,
+            output = F.scaled_dot_product_attention(
+                    xq.transpose(1, 2),
+                    xk.transpose(1, 2),
+                    xv.transpose(1, 2),
+                    is_causal=False,
                 )
+            output = output.transpose(1, 2).contiguous()
 
         output = output.view(bsz, seqlen, self.dim)
 

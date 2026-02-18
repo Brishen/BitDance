@@ -1,7 +1,10 @@
 import torch
 from torch import nn
 from typing import Optional, Union
-from flash_attn import flash_attn_varlen_func
+try:
+    from flash_attn import flash_attn_varlen_func
+except ImportError:
+    flash_attn_varlen_func = None
 from einops import rearrange
 
 from transformers.models.qwen3.modeling_qwen3 import (
@@ -75,6 +78,9 @@ class Qwen3PackedAttention(Qwen3Attention):
 
         # 5. Call Flash Attention Varlen Function
         # Note: flash_attn_varlen_func expects inputs of shape [total_tokens, num_heads, head_dim]
+        if flash_attn_varlen_func is None:
+            raise ImportError("flash_attn is not installed, but packed attention requires it. Please install flash_attn or provide `sample_lens=None` to disable packed attention.")
+
         attn_output = flash_attn_varlen_func(
             q=query_states.to(torch.bfloat16),
             k=key_states.to(torch.bfloat16),

@@ -4,8 +4,6 @@ from typing import Optional
 import torch
 import torch.nn as nn
 
-from flash_attn import flash_attn_func
-
 from torch.nn import RMSNorm
 from torch.nn import functional as F
 
@@ -158,13 +156,14 @@ class Attention(nn.Module):
             output = self.naive_attention(xq, keys, values, is_causal=is_causal)
             output = output.transpose(1, 2).contiguous()
         else:
-            output = flash_attn_func(
-                xq,
-                xk,
-                xv,
-                causal=is_causal,
+            output = F.scaled_dot_product_attention(
+                xq.transpose(1, 2),
+                xk.transpose(1, 2),
+                xv.transpose(1, 2),
                 dropout_p=self.attn_dropout_p if self.training else 0,
+                is_causal=is_causal,
             )
+            output = output.transpose(1, 2).contiguous()
 
         output = output.view(bsz, seqlen, self.dim)
 
