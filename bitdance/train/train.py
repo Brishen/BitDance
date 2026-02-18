@@ -8,9 +8,9 @@ from omegaconf import OmegaConf
 import wandb
 from tqdm import tqdm
 
-from train.fsdp_utils import FSDPConfig, fsdp_wrapper, FSDPCheckpoint
-from modeling.mllm import MLLModel
-from train.dataset import BitDanceDataset, BitDanceCollator
+from bitdance.train.fsdp_utils import FSDPConfig, fsdp_wrapper, FSDPCheckpoint
+from bitdance.modeling.mllm import MLLModel
+from bitdance.train.dataset import BitDanceDataset, BitDanceCollator
 from transformers import AutoTokenizer
 
 def setup_distributed():

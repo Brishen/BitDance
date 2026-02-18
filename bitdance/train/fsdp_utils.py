@@ -20,8 +20,8 @@ from safetensors.torch import load_file, save_file
 
 from transformers.models.qwen3.modeling_qwen3 import Qwen3DecoderLayer  # NEW
 from transformers.models.qwen2.modeling_qwen2 import Qwen2DecoderLayer
-from modeling.vision_head.flow_head_parallel_x import TransEncoder
-from modeling.utils import MLPconnector
+from bitdance.modeling.vision_head.flow_head_parallel_x import TransEncoder
+from bitdance.modeling.utils import MLPconnector
 
 
 import shutil
